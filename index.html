@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="App">
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <title>Ces chers Choristes</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="sort.js"></script>
+  </head>
+
+  <body ng-controller="choristes_ctrl">
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th onclick="sortTable(0)">Reference</th>
+          <th onclick="sortTable(1)">Nom</th>
+          <th onclick="sortTable(2)">Date</th>
+          <th align="left" onclick="sortTable(3)">Montant</th>
+        </tr>
+      </thead>
+      <tr ng-repeat="choriste in choristes| orderBy:'date'">
+        <td>{{ $index + 1 }}</td>
+        <td>{{choriste.reference}}</td>
+        <td>{{choriste.nom}}</td>
+        <td align="left">{{choriste.date.monthValue}}.{{choriste.date.dayOfMonth}}.{{choriste.date.year}}</td>
+        <td>{{choriste.montant}}</td>
+      </tr>
+    </table>
+  </body>
+
+</html>
